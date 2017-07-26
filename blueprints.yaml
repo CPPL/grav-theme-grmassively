@@ -1,0 +1,27 @@
+name: GrMassively
+version: 0.1.0
+description: Grav implementation of Massively from HTML5Up.net
+icon: snow
+author:
+  name: Craig Phillips
+  email: support@craigphillips.biz
+homepage: https://github.com/cppl/grav-theme-grmassively
+demo: http://seepeoplesoftware.com
+keywords: grav, theme, HTML5Up
+bugs: https://github.com/cppl/grav-theme-grmassively/issues
+readme: https://github.com/cppl/grav-theme-grmassively/blob/develop/README.md
+license: MIT
+
+form:
+  validation: loose
+  fields:
+    dropdown.enabled:
+        type: toggle
+        label: Dropdown in Menu
+        highlight: 1
+        default: 1
+        options:
+          1: PLUGIN_ADMIN.ENABLED
+          0: PLUGIN_ADMIN.DISABLED
+        validate:
+          type: bool
