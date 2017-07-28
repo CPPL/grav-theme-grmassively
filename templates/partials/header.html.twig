@@ -1,0 +1,10 @@
+<header class="major">
+{% if pageHeader.date|length > 0 %}
+    <span class="date">{{ pageHeader.date|date(theme_config.date_format) }}</span>
+{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if pageHeader.pull_quote|length > 0 %}{{ pageHeader.pull_quote|markdown }}{% endif %}
+</header>
+{% if pageHeader.hero_image|length > 0 %}
+<div class="image main"><img src="{{ pageHeader.hero_image }}" alt="" /></div>
+{% endif %}
