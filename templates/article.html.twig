@@ -2,7 +2,7 @@
 
 {% block content %}
     <section class="post">
-        {% set pageHeader = page.header %}
+        {% set thisPage = page %}
         {% include 'partials/header.html.twig' %}
     {{ page.content }}
     </section>
