@@ -1,0 +1,7 @@
+{% if theme_config.social_buttons|length > 0 %}
+<ul class="icons">
+    {% for item in theme_config.social_buttons %}
+        <li><a href="{{ item.url }}" class="icon {{ item.btn }}" target="_blank"><span class="label">{{ item.url_title }}</span></a></li>
+    {% endfor %}
+</ul>
+{% endif %}

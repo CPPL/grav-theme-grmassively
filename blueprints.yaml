@@ -12,16 +12,185 @@ bugs: https://github.com/cppl/grav-theme-grmassively/issues
 readme: https://github.com/cppl/grav-theme-grmassively/blob/develop/README.md
 license: MIT
 
+dependencies:
+  - { name: form, version: '~2.8' }
+
 form:
   validation: loose
   fields:
-    dropdown.enabled:
-        type: toggle
-        label: Dropdown in Menu
-        highlight: 1
-        default: 1
-        options:
-          1: PLUGIN_ADMIN.ENABLED
-          0: PLUGIN_ADMIN.DISABLED
-        validate:
-          type: bool
+
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        general:
+          type: tab
+          title: THEME_GRMASSIVE.GENERAL
+          fields:
+            background_image:
+                type: file
+                label: THEME_GRMASSIVE.BACKGROUND_IMAGE
+                help: THEME_GRMASSIVE.BACKGROUND_IMAGE_HELP
+                destination: 'user/themes/grmassively/images'
+                multiple: false
+                accept:
+                  - image/*
+
+            highlight_color:
+                type: colorpicker
+                default: '#18bfef'
+                label: THEME_GRMASSIVE.HIGHLIGHT_COLOR
+                help:  THEME_GRMASSIVE.HIGHLIGHT_COLOR_HELP
+
+            date_format:
+                label: THEME_GRMASSIVE.PAGE_DATE_FORMAT
+                help:  THEME_GRMASSIVE.PAGE_DATE_FORMAT_HELP
+                type: dateformat
+                size: medium
+                classes: fancy
+                default: "F d, Y"
+                options:
+                    "F jS \\a\\t g:ia": Date1
+                    "l jS \\of F g:i A": Date2
+                    "D, d M Y G:i:s": Date3
+                    "d-m-y G:i": Date4
+                    "jS F Y": Date5
+                    "F d, Y": Date6
+
+        headfooter:
+          type: tab
+          title: THEME_GRMASSIVE.HEADER_FOOTER
+          fields:
+            copyright_items:
+              name: copyright_block
+              type: list
+              collapsed: true
+              style: vertical
+              label: THEME_GRMASSIVE.COPYRIGHT_BLOCK
+              help: THEME_GRMASSIVE.COPYRIGHT_BLOCK_HELP
+              fields:
+                .item:
+                  type: text
+                  label: THEME_GRMASSIVE.COPYRIGHT_BLOCK_ITEM
+                  help: THEME_GRMASSIVE.COPYRIGHT_BLOCK_ITEM_HELP
+                  default: '© {{ "now"|date(''Y'') }} Your Name'
+                  default: '© {{ "now"|date(''Y'') }} Your Name'
+
+            social_buttons:
+              name: social
+              type: list
+              collapsed: true
+              style: vertical
+              label: THEME_GRMASSIVE.SOCIALBUTTONS
+              fields:
+                .btn:
+                  type: select
+                  size: small
+                  label: THEME_GRMASSIVE.ICON
+                  options:
+                    'fa-bitbucket': THEME_GRMASSIVE.BITBUCKET
+                    'fa-dribble': THEME_GRMASSIVE.DRIBBLE
+                    'fa-facebook': THEME_GRMASSIVE.FACEBOOK
+                    'fa-flickr': THEME_GRMASSIVE.FLICKR
+                    'fa-github': THEME_GRMASSIVE.GITHUB
+                    'fa-instagram': THEME_GRMASSIVE.INSTAGRAM
+                    'fa-linkedin': THEME_GRMASSIVE.LINKEDIN
+                    'fa-medium': THEME_GRMASSIVE.MEDIUM
+                    'fa-pinterest': THEME_GRMASSIVE.PINTEREST
+                    'fa-twitter': THEME_GRMASSIVE.TWITTER
+                    'fa-link': THEME_GRMASSIVE.LINK
+                .url_title:
+                  type: text
+                  size: medium
+                  label: THEME_GRMASSIVE.SOCIALURL_TITLE
+                  help: THEME_GRMASSIVE.SOCIALURL_TITLE_HELP
+                  placeholder: 'e.g. Our Twitter account'
+                .url:
+                  type: text
+                  size: medium
+                  label: THEME_GRMASSIVE.SOCIALURL
+                  help: THEME_GRMASSIVE.SOCIALURL_HELP
+                  placeholder: 'e.g. https://twitter.com/cpplaus'
+        footercontacts:
+          type: tab
+          title: THEME_GRMASSIVE.FOOTERCONTACTS
+          fields:
+            contactform:
+              label: THEME_GRMASSIVE.CONTACTS_FORM_TOGGLE
+              help:  THEME_GRMASSIVE.CONTACTS_FORM_TOGGLE_HELP
+              type: toggle
+              default: 1
+              highlight: 1
+              validate:
+                type: bool
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+            contactform_route:
+              label: THEME_GRMASSIVE.CONTACTS_FORM_ROUTE
+              help: THEME_GRMASSIVE.CONTACTS_FORM_ROUTE_HELP
+              type: pages
+              size: medium
+              classes: fancy
+
+            addressblock:
+              label: THEME_GRMASSIVE.FOOTER_ADDRESS
+              help:  THEME_GRMASSIVE.FOOTER_ADDRESS_HELP
+              type: toggle
+              default: 1
+              highlight: 1
+              validate:
+                type: bool
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+
+            address_items:
+              name: address_item
+              type: list
+              collapsed: true
+              style: vertical
+              label: THEME_GRMASSIVE.ADDRESS_ITEMS
+              fields:
+                .type:
+                  type: select
+                  size: medium
+                  label: THEME_GRMASSIVE.ADDRESS_ITEM_TYPE
+                  help:  THEME_GRMASSIVE.ADDRESS_ITEM_TYPE_HELP
+                  options:
+                    address: THEME_GRMASSIVE.AI_ADDRESS
+                    email: THEME_GRMASSIVE.AI_EMAIL
+                    link: THEME_GRMASSIVE.AI_LINK
+                    markdown: THEME_GRMASSIVE.AI_MARKDOWN
+                    telephone: THEME_GRMASSIVE.AI_TELEPHONE
+                    text: THEME_GRMASSIVE.AI_PLAIN_TEXT
+                .label:
+                  type: text
+                  size: medium
+                  label: THEME_GRMASSIVE.ADDRESS_ITEM_LABEL
+                  help:  THEME_GRMASSIVE.ADDRESS_ITEM_LABEL_HELP
+                .value:
+                  type: textarea
+                  size: medium
+                  label: THEME_GRMASSIVE.ADDRESS_ITEM_VALUE
+                  help: THEME_GRMASSIVE.ADDRESS_ITEM_VALUE_HELP
+
+            socialfooter:
+              label: THEME_GRMASSIVE.FOOTER_SOCIAL_BLOCK
+              help:  THEME_GRMASSIVE.FOOTER_SOCIAL_BLOCK_HELP
+              type: toggle
+              default: 1
+              highlight: 1
+              validate:
+                type: bool
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+            socialfooter_label:
+              label: THEME_GRMASSIVE.SOCIALFOOTER_LABEL
+              help:  THEME_GRMASSIVE.SOCIALFOOTER_LABEL_HELP
+              type: text
+              size: small
+              default: Social
+              placeholder: THEME_GRMASSIVE.SOCIAL

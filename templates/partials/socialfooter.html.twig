@@ -1,0 +1,10 @@
+{% if theme_config.social_buttons|length > 0 %}
+<section>
+        <h3>{{ theme_config.socialfooter_label }}</h3>
+        <ul class="icons alt">
+    {% for item in theme_config.social_buttons %}
+        <li><a href="{{ item.url }}" class="icon {{ item.btn }}" target="_blank"><span class="label">{{ item.url_title }}</span></a></li>
+    {% endfor %}
+    </ul>
+   </section>
+{% endif %}
