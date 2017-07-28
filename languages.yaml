@@ -60,3 +60,5 @@ en:
     PAGE_CHOOSE_HERO_IMAGE_HELP: "Default pages in the Massive theme use a hero image paced at the top fo the page. Upload an image for this page and select it here."
     PAGE_PULL_QUOTE: 'Pull Quote'
     PAGE_PULL_QUOTE_HELP: 'The pull quote is shown between the page title and the hero image if it''s defined. A single paragraph is best for this theme. Markdown is converted.'
+    READ_MORE_LABEL: 'Read more Label'
+    READ_MORE_LABEL_HELP: 'The text used in the link/button to take the read to the full article page.'

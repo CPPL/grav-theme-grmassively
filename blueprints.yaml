@@ -58,6 +58,14 @@ form:
                     "jS F Y": Date5
                     "F d, Y": Date6
 
+            read_more_label:
+                label: THEME_GRMASSIVE.READ_MORE_LABEL
+                help:  THEME_GRMASSIVE.READ_MORE_LABEL_HELP
+                type:  text
+                size:  small
+                default: 'Full Story'
+                placeholder: 'Full Story'
+
         headfooter:
           type: tab
           title: THEME_GRMASSIVE.HEADER_FOOTER
