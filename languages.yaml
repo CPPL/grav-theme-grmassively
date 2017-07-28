@@ -56,6 +56,8 @@ en:
     FOOTER_SOCIAL_BLOCK_HELP: 'When enabled it show the templates social links in the footer block after any address items.'
     SOCIALFOOTER_LABEL: 'Label'
     SOCIALFOOTER_LABEL_HELP: 'The label placed next to the Social buttons/links in the footer.'
+    PAGE_ALT_HEADING: 'Alternate Heading'
+    PAGE_ALT_HEADING_HELP: 'If provided the alternate heading will replace the pages title in the masthead.'
     PAGE_CHOOSE_HERO_IMAGE: 'Choose Hero image'
     PAGE_CHOOSE_HERO_IMAGE_HELP: "Default pages in the Massive theme use a hero image paced at the top fo the page. Upload an image for this page and select it here."
     PAGE_PULL_QUOTE: 'Pull Quote'
