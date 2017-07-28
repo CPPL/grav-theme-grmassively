@@ -1,10 +1,11 @@
 <header class="major">
-{% if pageHeader.date|length > 0 %}
-    <span class="date">{{ pageHeader.date|date(theme_config.date_format) }}</span>
+{% if thisPage.header.date|length > 0 %}
+    <span class="date">{{ thisPage.header.date|date(theme_config.date_format) }}</span>
 {% endif %}
-    <h1>{{ page.title }}</h1>
-    {% if pageHeader.pull_quote|length > 0 %}{{ pageHeader.pull_quote|markdown }}{% endif %}
+    <h1>{{ thisPage.header.alt_heading|default(thisPage.header.title) }}</h1>
+    {% if thisPage.header.pull_quote|length > 0 %}{{ thisPage.header.pull_quote|markdown }}{% endif %}
 </header>
-{% if pageHeader.hero_image|length > 0 %}
-<div class="image main"><img src="{{ pageHeader.hero_image }}" alt="" /></div>
+{% if thisPage.header.hero_image|length > 0 %}
+    {% if thisPage.route == '/' %}{% set imagePath = '/' %}{% else %}{% set imagePath = thisPage.route ~ '/' %}{% endif %}
+<div class="image main"><img src="{{ imagePath }}{{ thisPage.header.hero_image }}" alt="" /></div>
 {% endif %}
