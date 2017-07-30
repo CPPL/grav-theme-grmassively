@@ -1,0 +1,22 @@
+title: THEME_GRMASSIVE.COLLECTION
+
+'@extends':
+    type: default
+    context: blueprints://pages
+
+child_type: article
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: PLUGIN_ADMIN.CONTENT
+          fields:
+            content:
+              unset@: true
+            uploads:
+              unset@: true

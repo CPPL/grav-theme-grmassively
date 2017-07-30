@@ -1,0 +1,14 @@
+{% set firstPage = collection.isFirst(thisPage.path) ?? 0 %}
+{% set hc = firstPage ? ' class = "major"' : ''%}
+<header{{ hc }}>
+    {% if thisPage.header.date|length > 0 %}
+        <span class="date">{{ thisPage.header.date|date(theme_config.date_format) }}</span>
+    {% endif %}
+    <h2><a href="{{ thisPage.route }}">{{ thisPage.header.alt_heading|default(thisPage.header.title) }}</a></h2>
+    {% if thisPage.header.pull_quote|length > 0 and firstPage %}{{ thisPage.header.pull_quote|markdown }}{% endif %}
+</header>
+{% if thisPage.header.hero_image|length > 0 %}
+    {% set imagePath = thisPage.route == '/' ? '/' : thisPage.route ~ '/' %}
+    {% set imageClass = firstPage ? ' main' : ' fit' %}
+    <a href="{{ thisPage.route }}" class="image{{ imageClass }}"><img src="{{ imagePath }}{{ thisPage.header.hero_image }}" alt="hero image" /></a>
+{% endif %}
