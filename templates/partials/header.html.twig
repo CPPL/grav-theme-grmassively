@@ -6,6 +6,6 @@
     {% if thisPage.header.pull_quote|length > 0 %}{{ thisPage.header.pull_quote|markdown }}{% endif %}
 </header>
 {% if thisPage.header.hero_image|length > 0 %}
-    {% if thisPage.route == '/' %}{% set imagePath = '/' %}{% else %}{% set imagePath = thisPage.route ~ '/' %}{% endif %}
-<div class="image main"><img src="{{ imagePath }}{{ thisPage.header.hero_image }}" alt="" /></div>
+    {% set imagePath = thisPage.route == '/' ? '/' : thisPage.route ~ '/' %}
+    <div class="image main"><img src="{{ imagePath }}{{ thisPage.header.hero_image }}" alt="" /></div>
 {% endif %}
