@@ -1,4 +1,5 @@
 {% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+{% set wrapperClass = page.template == 'frontpage' ? ' class="fade-in"' : '' %}
 <!DOCTYPE html>
 <!--
 	Massively by HTML5 UP
@@ -35,8 +36,10 @@
             <style>{% include 'css/override.css.twig' %}</style>
         {% endif %}
     </head>
-    <body id="top" class="{{ page.header.body_classes }}">
-        <div id="wrapper">
+    <body id="top" class="is-loading {{ page.header.body_classes }}">
+        <div id="wrapper"{{ wrapperClass }}>
+            {% block intro %}
+            {% endblock %}
     {% block header %}
         <header id="header">
             <a href="{{ base_url == '' ? '/' : base_url }}" class="logo">{{ config.site.title }}</a>
@@ -82,7 +85,12 @@
         </div>
 
         {% block bottom %}
-            {{ assets.js('bottom') }}
+            {% do assets.addJS('theme://js/jquery.scrollex.min.js', {'group':'bottom'}) %}
+            {% do assets.addJS('theme://js/jquery.scrolly.min.js', {'group':'bottom'}) %}
+            {% do assets.addJS('theme://js/skel.min.js', {'group':'bottom'}) %}
+            {% do assets.addJS('theme://js/util.js', {'group':'bottom'}) %}
+            {% do assets.addJS('theme://js/main.js', {'group':'bottom'}) %}
         {% endblock %}
+        {{ assets.js('bottom') }}
     </body>
 </html>
