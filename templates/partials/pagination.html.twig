@@ -1,0 +1,25 @@
+{% if base_url == '' %}
+    {% set base_url = '/' %}
+{% endif %}
+<footer>
+    <nav class="pagination" role="navigation">
+    {% if pagination.hasPrev %}
+        {% set url =  (base_url ~ pagination.params ~ pagination.prevUrl)|replace({'//':'/'}) %}
+        <a class="page" href="{{ url }}">&larr; Prev</a>
+    {% endif %}
+    {% for paginate in pagination %}
+        {% if paginate.isCurrent %}
+            <a href="" class="page active">{{ uri.currentPage }}</a>
+        {% elseif paginate.isInDelta %}
+            {% set url = base_url ~ (pagination.params ~ paginate.url)|replace({'//':'/'}) %}
+            <a href="{{ url }}">{{ paginate.number }}</a>
+        {% elseif paginate.isDeltaBorder %}
+            <span>&hellip;</span>
+        {% endif %}
+    {% endfor %}
+    {% if pagination.hasNext %}
+        {% set url = (base_url ~ pagination.params ~ pagination.nextUrl)|replace({'//':'/'}) %}
+        <a class="page" href="{{ url }}">Next &rarr;</a>
+    {% endif %}
+    </nav>
+</footer>

@@ -1,0 +1,9 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <section class="post">
+        {% set thisPage = page %}
+        {% include 'partials/header.html.twig' %}
+    {{ page.content }}
+    </section>
+{% endblock %}

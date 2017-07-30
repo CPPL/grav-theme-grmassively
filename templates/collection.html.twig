@@ -1,0 +1,35 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {% set collection = page.collection() %}
+    <!-- Featured Post -->
+    <article class="post featured">
+        {% set thisPage = collection.first %}
+
+        {% include 'partials/collectionheader.html.twig' %}
+        <ul class="actions">
+            <li><a href="{{ thisPage.route }}" class="button big">{{ theme_config.read_more_label|default('Full Story') }}</a></li>
+        </ul>
+    </article>
+
+    <!-- Posts -->
+    <section class="posts">
+        {%  for article in collection %}
+            {% if not collection.isFirst(article.path) %}
+            <article>
+                {% set thisPage = article %}
+                {% include 'partials/collectionheader.html.twig' %}
+                {{ thisPage.summary(150) }}
+                <ul class="actions">
+                    <li><a href="{{ article.route }}" class="button big">{{ theme_config.read_more_label|default('Full Story') }}</a></li>
+                </ul>
+            </article>
+            {% endif %}
+        {% endfor %}
+    </section>
+
+    <!-- Footer -->
+    {% if config.plugins.pagination.enabled and collection.params.pagination %}
+        {% include 'partials/pagination.html.twig' with {'base_url': page.url, 'pagination':collection.params.pagination} %}
+    {% endif %}
+{% endblock %}

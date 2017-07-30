@@ -1,19 +1,8 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-    <section class="post">
-        <header class="major">
-            {{ dump(page) }}
-            {% if page.header.date|length > 0 %}
-            <span class="date">{{ page.header.date|date(theme_config.date_format) }}</span>
-            {% endif %}
-            <h1>{{ page.title }}</h1>
-            {% if page.header.pull_quote|length > 0 %}{{ page.header.pull_quote|markdown }}{% endif %}
-        </header>
-        {% if page.header.hero_image|length > 0 %}
-        <div class="image main"><img src="{{ page.header.hero_image }}" alt="" /></div>
-        {% endif %}
-
+<section class="post">
+    <header class="major"><h1>{{ page.title }}</h1></header>
     {{ page.content }}
-    </section>
+</section>
 {% endblock %}

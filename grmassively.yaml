@@ -1,3 +1,52 @@
 enabled: true
-dropdown:
-  enabled: true
+enabled: true
+highlight_color: '#18bfef'
+social_buttons:
+  -
+    btn: fa-twitter
+    url_title: 'See you on Twitter'
+    url: 'https://twitter.com/'
+  -
+    btn: fa-github
+    url_title: 'Our GitHub Repos'
+    url: 'https://github.com/'
+  -
+    btn: fa-link
+    url_title: Generic Link
+    url: 'https://example.com'
+  -
+    btn: fa-instagram
+    url_title: Instagram
+    url: 'https://instagram.com'
+date_format: 'F d, Y'
+copyright_items:
+  -
+    item: '© {{ "now"|date(''Y'') }}'
+  -
+    item: '[Some Company Ltd](https://example.com)'
+  -
+    item: 'Repo: [Github](https://github.com/)'
+contactform: true
+address: true
+addressblock: true
+address_items:
+  -
+    type: address
+    label: Address
+    value: "99 Some Street,\r\nSomeCity, SW, 0000"
+  -
+    type: telephone
+    label: Phone
+    value: +99-9-999-9999
+  -
+    type: email
+    label: Email
+    value: email@example.com
+socialfooter: true
+socialfooter_label: Social
+background_image:
+  user/themes/grmassively/images/bg.jpg:
+    name: bg.jpg
+    type: image/jpeg
+    path: user/themes/grmassively/images/bg.jpg
+read_more_label: 'Full Story'

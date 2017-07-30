@@ -36,7 +36,7 @@
         {% endif %}
     </head>
     <body id="top" class="{{ page.header.body_classes }}">
-        <div id="wrapper" class="fade-in">
+        <div id="wrapper">
     {% block header %}
         <header id="header">
             <a href="{{ base_url == '' ? '/' : base_url }}" class="logo">{{ config.site.title }}</a>
@@ -55,11 +55,7 @@
 
         <div id="main">
         {% block body %}
-            <section id="body">
-                <div class="wrapper padding">
-                    {% block content %}{% endblock %}
-                </div>
-            </section>
+            {% block content %}{% endblock %}
         {% endblock %}
         </div>
 

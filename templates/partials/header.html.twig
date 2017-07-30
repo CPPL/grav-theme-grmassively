@@ -1,0 +1,11 @@
+<header class="major">
+{% if thisPage.header.date|length > 0 %}
+    <span class="date">{{ thisPage.header.date|date(theme_config.date_format) }}</span>
+{% endif %}
+    <h2>{{ thisPage.header.alt_heading|default(thisPage.header.title) }}</h2>
+    {% if thisPage.header.pull_quote|length > 0 %}{{ thisPage.header.pull_quote|markdown }}{% endif %}
+</header>
+{% if thisPage.header.hero_image|length > 0 %}
+    {% set imagePath = thisPage.route == '/' ? '/' : thisPage.route ~ '/' %}
+    <div class="image main"><img src="{{ imagePath }}{{ thisPage.header.hero_image }}" alt="" /></div>
+{% endif %}
