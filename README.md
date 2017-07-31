@@ -57,7 +57,7 @@ This section deals with the settings for the site-wide footer defined in the Mas
 
 GrMassively is based on Massively from [HTML5Up](http://html5up.net)
 
-All conversion work to run on Grav was done by [CPPL](https:/craigphillips.biz)
+All conversion work to run on Grav was done by [CPPL](https://craigphillips.biz)
 
 Additional credits (per the Massively [README.txt](README.txt))
 
