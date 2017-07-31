@@ -1,0 +1,32 @@
+{% macro itemHeading(label) %}
+    {% if label|length > 0 %}<h3>{{ label }}</h3>{% endif %}
+{% endmacro %}
+{% macro processItem(item) %}
+{% if item.type == 'address' %}<section {{ secClass }}>{% else %}<section>{% endif %}
+
+    {{ _self.itemHeading(item.label) }}
+    {% if item.type == 'address' %}
+    <p translate="no">{{ item.value|nl2br }}</p>
+    {% elseif item.type == 'telephone' %}
+    <p><a href="tel:{{ item.value }}">{{ item.value }}</a></p>
+    {% elseif item.type == 'email' %}
+    <p><a href="mailto:{{ item.value|safe_email }}">{{ item.value|safe_email }}</a></p>
+    {% elseif item.type == 'link' %}
+    <p><a href="{{ item.value }}" target="_blank">{{ item.value }}</a></p>
+    {% elseif item.type == 'markdown' %}
+    {{ item.value|markdown }}
+    {% elseif item.type == 'text' %}
+    <p>{{ item.value|raw|nl2br}}</p>
+    {% endif %}
+</section>
+{% endmacro %}
+{% if theme_config.address_items|length > 0 %}
+<section class="split contact">
+{% for item in theme_config.address_items %}
+    {{ _self.processItem(item) }}
+{% endfor %}
+{% if theme_config.socialfooter %}
+    {% include 'partials/socialfooter.html.twig' %}
+{% endif %}
+</section>
+{% endif %}

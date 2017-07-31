@@ -1,0 +1,10 @@
+{% extends 'collection.html.twig' %}
+{% block intro %}
+    <div id="intro">
+        <h1>{{ page.header.fp_title }}</h1>
+        {{ page.header.fp_call_to_action|markdown }}
+        <ul class="actions">
+            <li><a href="#header" class="button icon solo fa-arrow-down scrolly">{{ page.header.fp_continue_btn }}</a></li>
+        </ul>
+    </div>
+{% endblock %}

@@ -1,69 +1,100 @@
 {% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+{% set wrapperClass = page.template == 'frontpage' ? ' class="fade-in"' : '' %}
 <!DOCTYPE html>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html lang="{{ grav.language.getActive ?: theme_config.default_lang }}">
-<head>
-{% block head %}
-    <meta charset="utf-8" />
-    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+    <head>
+        {% block head %}
+            <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+            {% include 'partials/metadata.html.twig' %}
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% include 'partials/metadata.html.twig' %}
+            <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png') }}" />
+            <link rel="canonical" href="{{ page.url(true, true) }}" />
 
-    <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png') }}" />
-    <link rel="canonical" href="{{ page.url(true, true) }}" />
-
-    {% block stylesheets %}
-        {% do assets.addCss('http://yui.yahooapis.com/pure/0.6.0/pure-min.css', 100) %}
-        {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', 99) %}
-        {% do assets.addCss('theme://css/custom.css', 98) %}
-    {% endblock %}
-    {{ assets.css() }}
-
-    {% block javascripts %}
-        {% do assets.addJs('jquery', 100) %}
-    {% endblock %}
-    {{ assets.js() }}
-
-{% endblock head%}
-</head>
-<body id="top" class="{{ page.header.body_classes }}">
-
-{% block header %}
-    <div class="header">
-        <div class="wrapper padding">
-            <a class="logo left" href="{{ base_url == '' ? '/' : base_url }}">
-                <i class="fa fa-rebel"></i>
-                {{ config.site.title }}
-            </a>
-            {% block header_navigation %}
-            <nav class="main-nav">
-                {% include 'partials/navigation.html.twig' %}
-            </nav>
+            {% block stylesheets %}
+                {% do assets.addCss('theme://css/main.css', 98) %}
+                {% do assets.addCss('theme://css/custom.css', 98) %}
+                <noscript>{% do assets.addCss('theme://css/noscript.css') %}</noscript>
             {% endblock %}
+            {{ assets.css() }}
+
+            {% block javascripts %}
+                {% do assets.addJs('jquery', 100) %}
+            {% endblock %}
+            {{ assets.js() }}
+
+        {% endblock head%}
+        {% set overrideCSS = not (theme_config.highlight_color == '#18bfef') %}
+        {% if overrideCSS %}
+            {% set hc = theme_config.highlight_color %}
+            <style>{% include 'css/override.css.twig' %}</style>
+        {% endif %}
+    </head>
+    <body id="top" class="is-loading {{ page.header.body_classes }}">
+        <div id="wrapper"{{ wrapperClass }}>
+            {% block intro %}
+            {% endblock %}
+    {% block header %}
+        <header id="header">
+            <a href="{{ base_url == '' ? '/' : base_url }}" class="logo">{{ config.site.title }}</a>
+        </header>
+        {% block header_navigation %}
+        <nav id="nav">
+            <ul class="links">
+                {% include 'partials/navigation.html.twig' %}
+            </ul>
+            <ul class="icons">
+                {% include 'partials/socialbtns.html.twig' %}
+            </ul>
+        </nav>
+        {% endblock %}
+    {% endblock %}
+
+        <div id="main">
+        {% block body %}
+            {% block content %}{% endblock %}
+        {% endblock %}
         </div>
-    </div>
-{% endblock %}
 
-{% block body %}
-    <section id="body">
-        <div class="wrapper padding">
-        {% block content %}{% endblock %}
+    {% block footer %}
+        <footer id="footer">
+            {% block footerLeft %}
+            <section>
+            {% if theme_config.contactform.enabled %}
+                {% include "forms/form.html.twig" with { form: forms( {route: theme_config.contactform_route} ) } %}
+            {% endif %}
+            </section>
+            {% endblock %}
+            {% block footerright %}
+            {% if theme_config.addressblock and theme_config.socialfooter %}
+                {% include 'partials/addressfooter.html.twig' %}
+            {% elseif theme_config.socialfooter %}
+            <section class="split contact">
+                {% include 'partials/socialfooter.html.twig' %}
+            </section>
+            {% endif %}
+            {% endblock %}
+        </footer>
+    {% endblock %}
+
+    {% block copyright %}
+        {% include 'partials/copyright.html.twig' %}
+    {% endblock %}
         </div>
-    </section>
-{% endblock %}
 
-{% block footer %}
-    <div class="footer text-center">
-        <div class="wrapper padding">
-            <p><a href="http://getgrav.org">Grav</a> was <i class="fa fa-code"></i> with <i class="fa fa-heart"></i> by <a href="http://www.rockettheme.com">RocketTheme</a>.</p>
-        </div>
-    </div>
-{% endblock %}
-
-{% block bottom %}
-    {{ assets.js('bottom') }}
-{% endblock %}
-
-</body>
+        {% block bottom %}
+            {% do assets.addJS('theme://js/jquery.scrollex.min.js', {'group':'bottom'}) %}
+            {% do assets.addJS('theme://js/jquery.scrolly.min.js', {'group':'bottom'}) %}
+            {% do assets.addJS('theme://js/skel.min.js', {'group':'bottom'}) %}
+            {% do assets.addJS('theme://js/util.js', {'group':'bottom'}) %}
+            {% do assets.addJS('theme://js/main.js', {'group':'bottom'}) %}
+        {% endblock %}
+        {{ assets.js('bottom') }}
+    </body>
 </html>

@@ -1,0 +1,24 @@
+title: THEME_GRMASSIVE.ARTICLE
+
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    header.alt_heading:
+      label: THEME_GRMASSIVE.PAGE_ALT_HEADING
+      help:  THEME_GRMASSIVE.PAGE_ALT_HEADING_HELP
+      type:  text
+      size:  large
+
+    header.hero_image:
+      label: THEME_GRMASSIVE.PAGE_CHOOSE_HERO_IMAGE
+      help:  THEME_GRMASSIVE.PAGE_CHOOSE_HERO_IMAGE_HELP
+      type:  pagemediaselect
+
+    header.pull_quote:
+      label: THEME_GRMASSIVE.PAGE_PULL_QUOTE
+      help:  THEME_GRMASSIVE.PAGE_PULL_QUOTE_HELP
+      type:  text
+      size:  large

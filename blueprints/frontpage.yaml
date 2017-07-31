@@ -1,0 +1,40 @@
+title: THEME_GRMASSIVE.COLLECTION
+
+'@extends':
+    type: default
+    context: blueprints://pages
+
+child_type: article
+
+form:
+  fields:
+    header.fp_title:
+      type: text
+      size: medium
+      label: THEME_GRMASSIVE.TITLE
+      help:  THEME_GRMASSIVE.TITLE_HELP
+      placeholder: THEME_GRMASSIVE.THIS_IS_MASSIVELY
+    header.fp_call_to_action:
+      label: THEME_GRMASSIVE.CALL_TO_ACTION
+      type: editor
+      size: medium
+    header.fp_continue_btn:
+      type: text
+      size: small
+      label: THEME_GRMASSIVE.CONTINUE_BTN
+      help:  THEME_GRMASSIVE.CONTINUE_BTN_HELP
+      placeholder: THEME_GRMASSIVE.CONTINUE
+      default: Continue
+
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: PLUGIN_ADMIN.CONTENT
+          fields:
+            content:
+              unset@: true
+            uploads:
+              unset@: true

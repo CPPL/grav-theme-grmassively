@@ -1,0 +1,20 @@
+{% macro convertFld(startTag, endTag, text) %}
+
+    {# Process any twig and then process for markdown #}
+    {% set html = include(template_from_string(text))|markdown %}
+
+    {% if html|starts_with(startTag) and html|ends_with(endTag) %}
+        {{  html|split(startTag)[1]|split(endTag)[0] }}
+    {% else %}
+        {{ md }}
+    {% endif %}
+{% endmacro %}
+
+<div id="copyright">
+    <ul>
+    {% for c in theme_config.copyright_items %}
+        {# The markdown conversion wraps result in <p></p> by default #}
+        <li>{{ _self.convertFld('<p>', '</p>', c.item) }}</li>
+    {% endfor %}
+    </ul>
+</div>
