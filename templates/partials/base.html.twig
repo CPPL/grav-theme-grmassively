@@ -64,11 +64,14 @@
 
     {% block footer %}
         <footer id="footer">
-            {% if theme_config.contactform %}
+            {% block footerLeft %}
             <section>
+            {% if theme_config.contactform.enabled %}
                 {% include "forms/form.html.twig" with { form: forms( {route: theme_config.contactform_route} ) } %}
-            </section>
             {% endif %}
+            </section>
+            {% endblock %}
+            {% block footerright %}
             {% if theme_config.addressblock and theme_config.socialfooter %}
                 {% include 'partials/addressfooter.html.twig' %}
             {% elseif theme_config.socialfooter %}
@@ -76,6 +79,7 @@
                 {% include 'partials/socialfooter.html.twig' %}
             </section>
             {% endif %}
+            {% endblock %}
         </footer>
     {% endblock %}
 
