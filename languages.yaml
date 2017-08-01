@@ -76,3 +76,7 @@ en:
     CONTINUE: 'Continue'
     CONTINUE_BTN: 'Continue Button Label'
     CONTINUE_BTN_HELP: 'The label to be used in the Continue button for assistive devices.'
+    FP_OPTIONS: 'Frontpage Options'
+    ABOUT_AO: 'GrMassively allows for alternate article heading text, a hero image and a pull quote - they can be set in this section.'
+    ABOUT_FPO: 'If you use an `Article` page (rather than a `Frontpage`) as the home page in Grav, you can use these field to specify the homepage specific features ofthe theme.'
+    ABOUT_FPO1: 'The `Frontpage` template is normally used as the home page in Grav, you can use these field to specify the homepage specific features ofthe theme.'
