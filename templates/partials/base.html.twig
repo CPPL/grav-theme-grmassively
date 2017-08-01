@@ -66,8 +66,10 @@
         <footer id="footer">
             {% block footerLeft %}
             <section>
-            {% if theme_config.contactform.enabled %}
+            {% if theme_config.contactform %}
                 {% include "forms/form.html.twig" with { form: forms( {route: theme_config.contactform_route} ) } %}
+            {% else %}
+                <!-- Form not enabled-->
             {% endif %}
             </section>
             {% endblock %}
